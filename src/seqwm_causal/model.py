@@ -258,7 +258,7 @@ class SeqWM(nn.Module):
             )
         Hp, Wp = H // P, W // P
         S = Hp * Wp
-        # Variable-length causal inference (Page 2026-06-13): allow T<=cfg.t.
+        # Variable-length causal inference: allow T<=cfg.t.
         # Causal temporal attention makes positions [0,T) independent of the
         # dropped future slots, and temporal_pos[:, :T] reuses the first T
         # checkpoint embeddings (no weight resize). T>cfg.t is rejected.

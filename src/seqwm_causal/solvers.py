@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""EDM-compatible samplers for the c1/T9 short-T path (Page request 2026-06-13).
+"""EDM-compatible samplers for the short-T inference path.
 Inference-only, NO training. Heun (reference) vs DPM-Solver++(2M), a multistep
 data-prediction solver. Same EDM rho=7 sigma schedule for all (fair). NFE
 accounting: Heun = 2*N-1 (skips final correction at sigma=0); DPM++(2M) = N
@@ -154,7 +154,7 @@ def heun_trace(model, ctx_latents, act, cfg, edm_cfg, n_ctx, num_steps, sigma_ma
 def dpmpp2m_trace(model, ctx_latents, act, cfg, edm_cfg, n_ctx, num_steps, sigma_max,
                   device, horizon=1, ctx_noise=None, tgt_noise=None):
     """DPM++(2M) sampler with a SOLVER-NATIVE difficulty/local-error proxy (NOT
-    Heun's embedded estimator, which is invalid for adaptive DPM++ per Page).
+    Heun's embedded estimator, which is invalid for adaptive DPM++).
     Per step logs: x0_change_rel = ||D_i - D_{i-1}|| / ||D_i|| (how much the
     data-prediction is still moving = trajectory not yet converged), and
     correction_rel = ||denoised_d - D_i|| / ||D_i|| (magnitude of the 2nd-order
