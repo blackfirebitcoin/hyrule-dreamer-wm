@@ -123,7 +123,8 @@ Running the GPU on a remote box? Launch `run_play.sh` there and forward the port
 | Tokenizer | KL-VAE, 32×32×16 latent (~6 MB) |
 | Frame | 64×64, ego-centric (world moves around Link) |
 | Inference | receding-horizon, `n_ctx=8`, Heun solver, 20 steps, `sigma_data=0.179` |
-| Actions | 9 NES controller tokens (single-button + 4-way) |
+| Speed | real-time interactive (~10 fps with DPM8 on a modern GPU) |
+| Actions | 9-token NES controller vocab; the model responds to 4-way movement + no-op (attack buttons exist but don't fire) |
 | Weights | `hyrule_dreamer_wm.pt` (70 MB, EMA), `f4_ego_tokenizer.pt` (6 MB) |
 
 Architecture and training detail: [`docs/architecture.md`](docs/architecture.md),
@@ -136,13 +137,13 @@ Architecture and training detail: [`docs/architecture.md`](docs/architecture.md)
   *coherent, controllable dream* — not map fidelity — as the goal. Coherence holds for
   several seconds and is strongest when following a recorded action route; sustained
   held-direction walking diverges sooner.
-- **Obedience is partial.** The model reliably *shapes the world* under actions but is
-  not a precise steering controller.
-- **Combat is loose.** Enemies and taking damage *do* appear in the dream (see the
-  showcase), but combat was not a primary training focus — expect it to be approximate
-  and unreliable. The model's strengths are overworld traversal and cave approach/interior.
-- **Not real-time yet.** Multi-step diffusion per frame; a distilled real-time
-  descendant is future work.
+- **Obedience can be loose.** The model responds to your input and shapes the world
+  accordingly, but it isn't a precise controller — it sometimes drifts off the
+  direction you're holding.
+- **No attacking — but it understands damage.** You can't swing a sword, yet the model
+  has a real sense of contact combat: when an enemy walks into Link he takes damage,
+  bounces back, and flashes a hurt state. The interaction is modeled; initiating attacks
+  is not.
 
 ## Repository layout
 

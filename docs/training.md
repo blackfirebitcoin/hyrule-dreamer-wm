@@ -34,5 +34,5 @@
   **collapsed faster** under closed-loop rollout — it is *not* the published checkpoint.
 - Fine-tune branches on this 64px base (context-noise FT, generated-history recovery FT)
   did not beat the base on coherence, so the **base** is the released model.
-- Drift-reduction work (self-forcing, distribution matching) and a real-time distilled
-  descendant are ongoing and beyond this checkpoint.
+- Drift-reduction work (self-forcing, distribution matching) is ongoing and beyond this
+  checkpoint.
