@@ -1,0 +1,20 @@
+# Model weights — distributed as GitHub Release / HF assets, fetched on demand
+weights/*.pt
+weights/*.safetensors
+
+# Generated outputs
+out/
+*.mp4
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
