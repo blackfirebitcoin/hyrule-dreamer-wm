@@ -1,0 +1,15 @@
+# Inference dependencies for zelda-f96.
+#
+# torch is intentionally NOT pinned here — install the build that matches your
+# CUDA / platform first (see https://pytorch.org). The model is small (~70M
+# params) and runs on any recent PyTorch >= 2.1.
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements.txt
+
+numpy>=1.24
+imageio>=2.34
+imageio-ffmpeg>=0.5
+
+# Live play harness (play.py)
+aiohttp>=3.9
